@@ -167,4 +167,18 @@ Route::group(['prefix' => 'pizzas'], function () {
     });
 
 
+    Route::group(['prefix' => 'login'], function () {
+
+        Route::get('/', ['as' => 'app.register','uses' => 'Auth.RegisterController@login']);
+
+        Route::get('/{id}', ['as' => 'front-end.pizzas.create','uses' => 'DTPizzasController@create']);
+
+
+            Route::get('/logout', ['as' => 'front-end.pizzas.edit', 'uses' => 'DTPizzasController@edit']);
+
+
+        });
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
